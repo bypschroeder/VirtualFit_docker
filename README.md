@@ -1,6 +1,6 @@
-# Docker setup for SMPLify-X and OpenPose
+# Docker setup for the VirtualFit Project
 
-A Docker setup for SMPLify-X and OpenPose creating a shared volume and building the images.
+A Docker setup for VirtualFit, including OpenPose and SMPLify-X.
 
 ## Requirements
 - https://docs.nvidia.com/cuda/wsl-user-guide/index.html
@@ -18,4 +18,4 @@ To run:
 docker-compose up 
 ```
 
-To run OpenPose or SMPLify-X, navigate to the respective container. For detailed instructions, refer to ```smplify-x/README.md``` and ```openpose/README.md```.
+Refer to the ``README.md`` file in each folder for detailed instructions specific to each container. 
