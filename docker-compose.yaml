@@ -21,6 +21,17 @@ services:
     volumes:
       - shared_data:/shared
     tty: true
+  blender:
+    build:
+      context: ./blender
+    image: blender:latest
+    container_name: blender
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - shared_data:/shared
+    tty: true
 
 volumes:
   shared_data:
