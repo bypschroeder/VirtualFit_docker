@@ -8,6 +8,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean
 
 WORKDIR /vf_blender
-RUN git clone https://github.com/bypschroeder/VirtualFit_blender.git . && \
-    pip3 install -r requirements.txt
+RUN git clone https://github.com/bypschroeder/VirtualFit_blender.git .
 
