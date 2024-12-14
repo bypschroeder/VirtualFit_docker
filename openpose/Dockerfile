@@ -39,3 +39,5 @@ RUN sed -i 's/execute_process(COMMAND git checkout master WORKING_DIRECTORY ${CM
 
 WORKDIR /openpose/build
 RUN cmake .. -DUSE_CUDNN=OFF && make -j`nproc`
+
+WORKDIR /openpose
