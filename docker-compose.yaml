@@ -32,6 +32,14 @@ services:
     volumes:
       - data:/data
     tty: true
+  backend:
+    build:
+      context: ./backend
+    image: backend:latest
+    container_name: backend
+    volumes:
+      - data:/data
+    tty: true
 
 volumes:
   data:
