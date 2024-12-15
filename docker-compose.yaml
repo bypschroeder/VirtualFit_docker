@@ -9,6 +9,8 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - data:/data
+    networks:
+      - virtualfit
     tty: true
   smplify-x:
     build:
@@ -20,6 +22,8 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - data:/data
+    networks:
+      - virtualfit
     tty: true
   blender:
     build:
@@ -31,6 +35,8 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - data:/data
+    networks:
+      - virtualfit
     tty: true
   backend:
     build:
@@ -39,8 +45,14 @@ services:
     container_name: backend
     volumes:
       - data:/data
+    networks:
+      - virtualfit
     tty: true
 
 volumes:
   data:
     driver: local
+
+networks:
+  virtualfit:
+    driver: bridge
