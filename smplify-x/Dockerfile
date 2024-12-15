@@ -11,9 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     wget \
     libgl1-mesa-glx \
-    libglib2.0-0 \
-    openssh-server && \
-    mkdir /var/run/sshd && \
+    libglib2.0-0 && \
     apt-get clean
 
 WORKDIR /smplx
@@ -33,8 +31,4 @@ RUN git clone https://github.com/KyujinHan/Smplify-X-Perfect-Implementation . &&
 
 RUN pip3 install --no-cache-dir configargparse omegaconf loguru git+https://github.com/nghorbani/human_body_prior
 
-RUN echo "root:root" | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+ENTRYPOINT [ "python3", "main.py", "--config", "cfg_files/fit_smplx.yaml", "--visualize=False", "--model_folder", "/smplx/models", "--vposer_ckpt", "/vposer/V02_05.pth" ]

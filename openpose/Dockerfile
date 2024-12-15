@@ -20,9 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libboost-all-dev \
     opencl-headers \
     ocl-icd-opencl-dev \
-    libviennacl-dev \
-    openssh-server && \
-    mkdir /var/run/sshd && \
+    libviennacl-dev && \
     apt-get clean
 
 RUN wget https://cmake.org/files/v3.13/cmake-3.13.0-Linux-x86_64.tar.gz && \
@@ -43,9 +41,4 @@ WORKDIR /openpose/build
 RUN cmake .. -DUSE_CUDNN=OFF && make -j`nproc`
 
 WORKDIR /openpose
-
-RUN echo "root:root" | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+ENTRYPOINT ["./build/examples/openpose/openpose.bin", "--image_dir", "/data/images", "--write_json", "/data/keypoints.json", "--face", "--hand", "--display", "0", "--render_pose", "0"]
