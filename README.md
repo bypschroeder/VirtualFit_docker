@@ -10,12 +10,14 @@ A Docker setup for VirtualFit, including OpenPose and SMPLify-X.
 
 To build:
 ```bash
-docker-compose up --build
+docker-compose build
 ```
 
-To run:
+To run :
 ```bash
-docker-compose up 
+docker-compose up backend
 ```
+
+This only runs the backend which is crucial since the api starts the required containers with their commands.
 
 Refer to the ``README.md`` file in each folder for detailed instructions specific to each container. 
