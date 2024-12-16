@@ -21,12 +21,14 @@ RUN pip3 install --no-cache-dir chumpy smplx[all] \
 RUN git clone https://github.com/vchoutas/smplx . && \
     python3 setup.py install
 RUN wget -O /smplx/models_smplx_v1_1.zip "https://www.dropbox.com/scl/fi/sq5tzk1stcmjn6e3iadi6/models_smplx_v1_1.zip?rlkey=bjou496ef97zbfc0j0bslxjeg&st=lu588o61&dl=1" && \
-    unzip -n /smplx/models_smplx_v1_1.zip -d /smplx
+    unzip -n /smplx/models_smplx_v1_1.zip -d /smplx && rm /smplx/models_smplx_v1_1.zip
 RUN mkdir /vposer && wget -O /vposer/V02_05.zip "https://www.dropbox.com/scl/fi/iikqr1ocfthtptmfo2cjz/V02_05.zip?rlkey=gj0jlwruni7tfaf556n9pieuz&st=b2onbhct&dl=1" && \
-    unzip -n /vposer/V02_05.zip -d /vposer
+    unzip -n /vposer/V02_05.zip -d /vposer && rm /vposer/V02_05.zip
 
 WORKDIR /smplify-x
 RUN git clone https://github.com/KyujinHan/Smplify-X-Perfect-Implementation . && \
     pip3 install -r requirements.txt || true
 
 RUN pip3 install --no-cache-dir configargparse omegaconf loguru git+https://github.com/nghorbani/human_body_prior
+
+ENTRYPOINT [ "python3", "smplifyx/main.py", "--config", "cfg_files/fit_smplx.yaml", "--visualize=False", "--model_folder", "../smplx/models", "--vposer_ckpt", "../vposer/V02_05.pth" ]
