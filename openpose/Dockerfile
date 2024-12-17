@@ -41,4 +41,3 @@ WORKDIR /openpose/build
 RUN cmake .. -DUSE_CUDNN=OFF && make -j`nproc`
 
 WORKDIR /openpose
-ENTRYPOINT ["/openpose/build/examples/openpose/openpose.bin"]

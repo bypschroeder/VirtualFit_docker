@@ -9,5 +9,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /vf_blender
 RUN git clone https://github.com/bypschroeder/VirtualFit_blender.git .
-
-ENTRYPOINT [ "blender", "-b", "-P" ]
